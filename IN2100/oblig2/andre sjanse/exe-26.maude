@@ -1,0 +1,43 @@
+fmod EXE-26 is 
+protecting LIST-INT . 
+
+*** EXERCISE 26 
+op empty? : List -> Bool . 
+op rest : NeList -> List .
+op reverse : List -> List . 
+op max : NeList -> Int .
+op isSorted : List -> Bool . 
+
+
+vars I J : Int . 
+var L : List . 
+var NEL : NeList . 
+
+
+*** Equations for EMPTY? operator 
+eq empty?(nil) = true . 
+eq empty?(NEL) = false .
+
+
+*** Equations for REST operator 
+eq rest(nil I) = nil . 
+eq rest (I L) = L . 
+
+
+*** Equations for REVERSE operator 
+eq reverse(nil) = nil . 
+eq reverse(L I) = I reverse(L) . 
+
+
+*** Equations for MAX operator 
+eq max(nil I) = I .
+eq max(NEL I) = max(max(NEL), I) . 
+
+*** Equations for ISSORTED operator 
+eq isSorted(nil) = true .
+eq isSorted(nil I) = true .
+eq isSorted(L I J) = (I < J) and isSorted(L I) .
+
+
+
+endfm

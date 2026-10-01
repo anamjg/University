@@ -1,0 +1,78 @@
+fmod EXE-28 is 
+*** EXERCISE 28 
+sorts Char Streng Pattern .
+
+subsorts Char < Streng < Pattern . 
+
+*** Constructors
+op empty : -> Streng [ctor] .
+op __ : Streng Streng -> Streng [ctor] . 
+
+
+*** Operators for working with Streng 
+op length : Streng -> Nat .  *** Returns the length of a string 
+op reverse : Streng -> Streng . *** Reverses the string 
+op concat : Streng Streng -> Streng . *** Concatenates two strings . 
+
+
+vars C D : Char . 
+vars S S1 S2 : Streng . 
+
+*** Equations for LENGTH operator 
+eq length(empty) = 0 . 
+eq length(C S) = 1 + length(S) . 
+
+*** Equations for REVERSE operator 
+eq reverse(empty) = empty . 
+eq reverse(C S) = reverse(S) C . 
+
+
+*** Equations for CONCAT operator 
+eq concat(empty, S) = S .
+eq concat(empty, S) = S .
+eq concat(C S1, S2) = C concat(S1, S2) . 
+
+
+*** Operators exercises 
+op '?' : -> Pattern [ctor] . 
+op __ : Pattern Pattern -> Pattern [ctor] . 
+op isPal : Streng -> Bool . 
+op _prefixOf_ : Streng Streng -> Bool . 
+op _prefixOf_ : Pattern Streng -> Bool .
+op _substringOf_ : Streng Streng -> Bool .
+op _substringOf_ : Pattern Streng -> Bool .
+
+var P : Pattern . 
+
+*** Equations for ISPAL operator 
+eq isPal(empty) = true . 
+ceq isPal(C S) = true if (C S) == (reverse(C S)) . 
+eq isPal(C S) = false [owise] . 
+
+
+*** Equations for PREFIX OF operator 
+eq empty prefixOf S = true . 
+eq C S prefixOf empty = false .
+ceq C S1 prefixOf D S2 = S1 prefixOf S2 if C == D . 
+ceq C S1 prefixOf D S2 = false if C =/= D .
+ 
+eq P prefixOf empty = false .
+eq C P prefixOf D S = false if C =/= D . 
+ceq C P prefixOf D S = P prefixOf S if C == D . 
+ceq '?' P prefixOf C S = P prefixOf S if '?' == C . 
+
+
+
+*** Equations for SUBSTRING OF operator
+*** NOT SURE WHAT CAN I CHANGE HERE 
+eq empty substringOf S = true .
+eq S substringOf empty = false . 
+eq P substringOf empty = false .
+ceq S1 substringOf S2 = true if S1 prefixOf S2 . 
+ceq P substringOf S = true if P prefixOf S . 
+eq S1 substringOf C S2 = S1 substringOf S2 . 
+eq P substringOf C S = P substringOf S . 
+
+
+
+endfm

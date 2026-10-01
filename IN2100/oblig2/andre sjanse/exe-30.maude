@@ -1,0 +1,45 @@
+fmod EXE-30 is 
+protecting MSET-INT . 
+
+*** EXERCISE 30 
+op size : Mset -> Nat . 
+op mult : Int Mset -> Nat . 
+op max : NeMset -> Int . 
+op empty? : Mset -> Bool .
+op _>mul_ : Mset Mset -> Bool . 
+
+vars I J : Int . 
+vars MS MS' : Mset . 
+vars NEMS NEMS' : NeMset .
+
+*** Equations for SIZE operator 
+eq size(none) = 0 .
+eq size(MS I) = s(size(MS)) .  
+
+
+*** Equations for MULT operator 
+eq mult(I, none) = 0 .
+ceq mult(I, MS J) = mult(I, MS) if J =/= I . 
+ceq mult(I, MS J) = s(mult(I, MS)) if J == I .
+
+
+*** Equations for MAX operator 
+eq max(I) = I .
+eq max(I NEMS) = if I > max(NEMS) then I else max(NEMS) fi .
+
+
+*** Equations for EMPTY? operator
+eq empty?(none) = true . 
+eq empty?(NEMS) = false .
+
+
+*** Equations for >MUL operator 
+eq none >mul none = false .
+eq none >mul MS = false . 
+eq MS >mul none = true .
+ceq MS >mul MS' = true if max(MS) > max(MS') .
+ceq MS >mul MS' = false if max(MS) < max(MS') . 
+ceq MS >mul MS' = delete(max(MS), MS) >mul delete(max(MS'), MS') if max(MS) == max(MS') .
+
+
+endfm

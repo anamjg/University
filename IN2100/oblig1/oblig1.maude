@@ -1,0 +1,105 @@
+fmod OBLIG1 is 
+protecting NAT-ADD .
+protecting BOOLEAN . 
+
+*** Exercise 9
+
+ops _monus_ min : Nat Nat -> Nat . 
+ops odd even : Nat -> Boolean .
+
+vars M N : Nat . 
+
+*** Equations for MONUS operation: max(m-n, 0)  
+eq 0 monus M = 0 .
+eq M monus 0 = M . 
+eq s(M) monus s(N) = M monus N .
+
+*** Equations for MIN operation 
+*** min(m, n) 
+eq min(0, 0) = 0 .
+eq min(0, s(M)) = 0 .
+eq min(s(M), 0) = 0 .
+eq min(s(M), s(N)) = s(min(M, N)) . 
+ 
+*** Equations for ODD operation 
+eq odd(0) = false . 
+eq odd(s(M)) = not odd(M) . 
+
+*** Equations for EVEN operation
+eq even(0) = true .
+eq even(s(M)) = not even(M) .
+
+
+*** Exercise 10
+
+sort List .
+
+*** Beforehand required operators
+op nil : -> List [ctor] .
+op __ : List Nat -> List [ctor] .
+op concat : List List -> List .
+
+*** Operations for exercise 10 
+op empty? : List -> Boolean .  *** Is the list empty? 
+op rest : List -> List .       *** Remove the first element 
+op last : List -> Nat .        *** Last element from list
+op reverse : List -> List .    *** Reverse list 
+
+vars L L' : List .
+*** var N : Nat .
+
+*** Equations for CONCAT operation
+eq concat(L, nil) = L .
+eq concat(L, L' N) = concat(L, L') N .
+
+*** Equations for EMPTY? operation 
+eq empty?(nil) = true .
+eq empty?(L) = false .
+
+*** Equations for REST operation 
+eq rest(nil) = nil .
+eq rest(nil N) = nil .
+eq rest(L N) = rest(L) N .
+
+*** Equations for LAST operation 
+eq last(nil) = 0 .
+eq last(L N) = N .
+
+*** Equations for REVERSE operation 
+eq reverse(nil) = nil . 
+eq reverse(nil N) = nil N .
+eq reverse(L N) = concat(nil N,  reverse(L)) . 
+
+
+*** Exercise 13 
+
+sort BinTree . 
+op empty : -> BinTree [ctor] .
+op bintree : BinTree Nat BinTree -> BinTree [ctor] .
+ops inorder postorder :  BinTree -> List .
+op weight : BinTree -> Nat .
+op reverse : BinTree -> BinTree .
+
+vars BT BT' : BinTree .
+*** var N : Nat .
+
+*** Equations for INORDER operator [Left, Root, Right]
+eq inorder(empty) = nil . 
+eq inorder(bintree(BT, N, BT')) = concat(inorder(BT), concat((nil N), inorder(BT'))) .
+
+
+*** Equations for POSTORDER operator [Left, Right, Root]
+eq postorder(empty) = nil .
+eq postorder(bintree(BT, N, BT')) = concat(postorder(BT), concat(postorder(BT'), (nil N))) .
+
+
+*** Equations for WEIGHT operator 
+eq weight(empty) = 0 .
+eq weight(bintree(BT, N, BT')) = weight(BT) + (N  + weight(BT')) . 
+
+
+*** Equations for REVERSE operator
+eq reverse(empty) = empty . 
+eq reverse(bintree(BT, N, BT')) = bintree(reverse(BT'), N, reverse(BT)) .
+
+endfm

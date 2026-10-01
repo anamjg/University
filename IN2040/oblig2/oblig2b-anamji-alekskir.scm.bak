@@ -1,0 +1,106 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname oblig2b-anamji-alekskir.scm) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+;; anamji & alekskir
+
+;; OPPGAVE 1
+(display "OPPGAVE 1") (newline)
+(display "a)") (newline)
+;; a)
+(define (make-counter)
+    (let ((count 0))
+      (lambda ()
+        (set! count (+ count 1))
+        count)))
+
+;; Kjøreeksempler 
+(define count 42)
+(define c1 (make-counter))
+(define c2 (make-counter))
+(c1) ;; -> 1
+(c1) ;; -> 2
+(c1) ;; -> 3
+count ;; -> 42
+(c2) ;; -> 1
+
+;; b) Se veddlegg
+
+;; OPPGAVE 2
+(display "OPPGAVE 2") (newline)
+(display "a)") (newline)
+
+;; a)
+(define (make-stack lst)
+      (define (push! x)
+        (set! lst (append (reverse x) lst)))
+      (define (pop!)
+        (if (null? lst)
+            (set! lst '())
+            (set! lst (cdr lst))))
+      (define (dispatch message . args)
+        (cond ((eq? message 'pop!) (pop!))
+              ((eq? message 'push!) (push! args))
+              ((eq? message 'stack) lst)))
+      dispatch)
+
+;; Kjøreeksempler
+(define s1 (make-stack (list 'foo 'bar)))
+(define s2 (make-stack '()))
+(s1 'pop!)
+(s1 'stack) ;; -> (bar)
+(s2 'pop!) ;; -> popper en tom stack
+(s2 'push! 1 2 3 4)
+(s2 'stack) ;; -> (4 3 2 1)
+(s1 'push! 'bah)
+(s1 'push! 'zap 'zip 'baz)
+(s1 'stack) ;; -> (baz zip zap bah bar)
+
+
+(newline)
+;;b)
+(display "b)") (newline)
+
+;; Litt syntaktisk sukker:
+(define (pop! name)
+  (name 'pop!))
+         
+(define (stack name)
+  (name 'stack))
+         
+(define (push! name . args)
+  (apply name 'push! args))
+
+;; Kjøreeksempler
+(pop! s1)
+(stack s1) ;; -> (zip zap bah bar)
+(push! s1 'foo 'faa)
+(stack s1) ;; -> (faa foo zip zap bah bar)
+
+
+;; OPPGAVE 3
+(display "OPPGAVE 3") (newline)
+(newline)
+;; a) Se veddlegg
+
+;; b) Se veddlegg
+
+;; c)
+(display "c)") (newline)
+(newline)
+
+(define (cycle? lst)
+  (define (is-cyc lst1 lst2)
+    (cond
+      ((null? lst2) #f)
+      ((null? (cdr lst2)) #f)
+      ((eq? lst1 lst2) #t)
+      (else (is-cyc (cdr lst1) (cddr lst2)))))
+  (is-cyc lst (cdr lst)))
+
+;; Kjøreeksempler
+(cycle? '(hey ho)) ;; -> #f
+(cycle? '(la la la)) ;; -> #f
+(cycle? bah) ;; -> #f
+(cycle? bar) ;; -> #t 
+
+;; d) Se veddlegg

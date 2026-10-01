@@ -1,0 +1,23 @@
+*** Read the file with your modules:
+load LIST-INT . 
+load exe-26.maude 
+
+in exe-27.maude 
+*** RUNTEST EXERCISE 27 
+
+red comesBeforeIn(1, 2, nil) .   *** false
+
+red comesBeforeIn(1, 2, 1 2 3) .   *** true 
+
+red comesBeforeIn(2, 1, 1 2 3) .   *** false 
+
+red comesBeforeIn(4, 2, 3 5 4 6 7 1 3 2 4) .   *** true 
+
+red 1 2 3 4 >lex 1 2 3 .   *** true
+
+red 2 3 4 >lex 1 2 3 4 .  *** true
+
+red 1 >lex 1 0 .          *** false 
+
+red 2 5 6 >lex 2 4 678 12 .  *** true  
+

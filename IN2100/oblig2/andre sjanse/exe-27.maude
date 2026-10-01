@@ -1,0 +1,27 @@
+fmod EXE-27 is 
+protecting EXE-26 .
+
+*** EXERCISE 27 
+op comesBeforeIn : Int Int List -> Bool . 
+op _>lex_ : List List -> Bool . 
+
+vars I J K : Int . 
+vars L L1 L2 : List . 
+
+
+*** Equations for COMES BEFORE IN operator 
+eq comesBeforeIn(I, J, nil) = false .
+eq comesBeforeIn(I, J, J L) = false . 
+ceq comesBeforeIn(I, J, I L) = true  if J occursIn L .
+eq comesBeforeIn(I, J, K L) = comesBeforeIn(I, J, L) .
+
+*** Equations for >LEX operator 
+*** NOT SURE WHAT THE COMMENT REFERS TO HERE SINCE THERE IS NOT A EQUATION THAT SAYS L >lex L' = L >lex L' or L == L' . 
+eq L1 >lex nil = true .
+eq nil >lex L2 = false . 
+ceq I L1 >lex J L2 = true if I > J .
+ceq I L1 >lex J L2 = false if I < J .
+ceq I L1 >lex J L2 = (L1 >lex L2) if (I == J) . 
+ 
+
+endfm

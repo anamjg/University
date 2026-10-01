@@ -1,0 +1,161 @@
+Maude> in oblig1-runtest.maude 
+Reading in file: "oblig1.maude"
+==========================================
+fmod OBLIG1
+Done reading in file: "oblig1.maude"
+==========================================
+reduce in OBLIG1 : s(s(s(s(s(0))))) monus s(s(0)) .
+rewrites: 3 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(s(s(0)))
+==========================================
+reduce in OBLIG1 : s(s(0)) monus s(s(s(0))) .
+rewrites: 3 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: 0
+==========================================
+reduce in OBLIG1 : s(0) monus s(0) .
+rewrites: 2 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: 0
+==========================================
+reduce in OBLIG1 : min(s(0), s(0)) .
+rewrites: 2 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(0)
+==========================================
+reduce in OBLIG1 : min(0, s(s(s(0)))) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: 0
+==========================================
+reduce in OBLIG1 : min(s(s(s(s(0)))), s(s(0))) .
+rewrites: 3 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(s(0))
+==========================================
+reduce in OBLIG1 : odd(0) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: false
+==========================================
+reduce in OBLIG1 : even(0) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: true
+==========================================
+reduce in OBLIG1 : odd(s(s(s(s(0))))) .
+rewrites: 9 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: false
+==========================================
+reduce in OBLIG1 : even(s(s(s(s(0))))) .
+rewrites: 9 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: true
+==========================================
+reduce in OBLIG1 : odd(s(s(s(s(s(0)))))) .
+rewrites: 11 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: true
+==========================================
+reduce in OBLIG1 : even(s(s(s(s(s(0)))))) .
+rewrites: 11 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: false
+==========================================
+reduce in OBLIG1 : empty?(nil) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: true
+==========================================
+reduce in OBLIG1 : rest(nil) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in OBLIG1 : last(nil) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: 0
+==========================================
+reduce in OBLIG1 : reverse(nil) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in OBLIG1 : empty?(nil s(0)) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: (false).Boolean
+==========================================
+reduce in OBLIG1 : rest(nil s(0)) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in OBLIG1 : last(nil s(0)) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(0)
+==========================================
+reduce in OBLIG1 : reverse(nil s(0)) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(0)
+==========================================
+reduce in OBLIG1 : empty?(nil s(s(s(0))) s(0) s(s(0))) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Boolean: false
+==========================================
+reduce in OBLIG1 : rest(nil s(s(s(0))) s(0) s(s(0))) .
+rewrites: 3 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(0) s(s(0))
+==========================================
+reduce in OBLIG1 : last(nil s(s(s(0))) s(0) s(s(0))) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(s(0))
+==========================================
+reduce in OBLIG1 : reverse(nil s(s(s(0))) s(0) s(s(0))) .
+rewrites: 8 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(s(0)) s(0) s(s(s(0)))
+==========================================
+reduce in OBLIG1 : inorder(bintree(empty, s(s(s(s(0)))), bintree(empty, s(s(s(s(s(s(s(0))))))), empty))) .
+rewrites: 13 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(s(s(s(0)))) s(s(s(s(s(s(s(0)))))))
+==========================================
+reduce in OBLIG1 : postorder(bintree(empty, s(s(s(s(0)))), bintree(empty, s(s(s(s(s(s(s(0))))))), empty))) .
+rewrites: 14 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(s(s(s(s(s(s(0))))))) s(s(s(s(0))))
+==========================================
+reduce in OBLIG1 : weight(bintree(empty, s(s(s(s(0)))), bintree(empty, s(s(s(s(s(s(s(0))))))), empty))) .
+rewrites: 20 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(s(s(s(s(s(s(s(s(s(s(0)))))))))))
+==========================================
+reduce in OBLIG1 : reverse(bintree(empty, s(s(s(s(0)))), bintree(empty, s(s(s(s(s(s(s(0))))))), empty))) .
+rewrites: 5 in 0ms cpu (0ms real) (~ rewrites/second)
+result BinTree: bintree(bintree(empty, s(s(s(s(s(s(s(0))))))), empty), s(s(s(s(0)))), empty)
+==========================================
+reduce in OBLIG1 : inorder(empty) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in OBLIG1 : postorder(empty) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil
+==========================================
+reduce in OBLIG1 : weight(empty) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: 0
+==========================================
+reduce in OBLIG1 : reverse(empty) .
+rewrites: 1 in 0ms cpu (0ms real) (~ rewrites/second)
+result BinTree: empty
+==========================================
+reduce in OBLIG1 : inorder(bintree(bintree(empty, s(s(0)), bintree(empty, s(s(s(0))), empty)), s(s(s(s(0)))),
+    bintree(bintree(empty, s(s(s(s(s(s(0)))))), empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(s(s(s(
+    s(s(0))))))))), empty)))) .
+rewrites: 41 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(s(0)) s(s(s(0))) s(s(s(s(0)))) s(s(s(s(s(s(0)))))) s(s(s(s(s(s(s(0))))))) s(s(s(s(s(s(s(s(
+    s(0)))))))))
+==========================================
+reduce in OBLIG1 : postorder(bintree(bintree(empty, s(s(0)), bintree(empty, s(s(s(0))), empty)), s(s(s(s(
+    0)))), bintree(bintree(empty, s(s(s(s(s(s(0)))))), empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(
+    s(s(s(s(s(0))))))))), empty)))) .
+rewrites: 42 in 0ms cpu (0ms real) (~ rewrites/second)
+result List: nil s(s(s(0))) s(s(0)) s(s(s(s(s(s(0)))))) s(s(s(s(s(s(s(s(s(0))))))))) s(s(s(s(s(s(s(0))))))) s(
+    s(s(s(0))))
+==========================================
+reduce in OBLIG1 : weight(bintree(bintree(empty, s(s(0)), bintree(empty, s(s(s(0))), empty)), s(s(s(s(0)))),
+    bintree(bintree(empty, s(s(s(s(s(s(0)))))), empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(s(s(s(
+    s(s(0))))))))), empty)))) .
+rewrites: 67 in 0ms cpu (0ms real) (~ rewrites/second)
+result Nat: s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(s(0)))))))))))))))))))))))))))))))
+==========================================
+reduce in OBLIG1 : reverse(bintree(bintree(empty, s(s(0)), bintree(empty, s(s(s(0))), empty)), s(s(s(s(0)))),
+    bintree(bintree(empty, s(s(s(s(s(s(0)))))), empty), s(s(s(s(s(s(s(0))))))), bintree(empty, s(s(s(s(s(s(s(
+    s(s(0))))))))), empty)))) .
+rewrites: 13 in 0ms cpu (0ms real) (~ rewrites/second)
+result BinTree: bintree(bintree(bintree(empty, s(s(s(s(s(s(s(s(s(0))))))))), empty), s(s(s(s(s(s(s(0))))))),
+    bintree(empty, s(s(s(s(s(s(0)))))), empty)), s(s(s(s(0)))), bintree(bintree(empty, s(s(s(0))), empty), s(
+    s(0)), empty))

@@ -1,0 +1,20 @@
+fmod EXE-32 is 
+
+*** EXERCISE 32 
+
+sorts Obj Msg . 
+
+sort Mset-ObjMsg . 
+
+subsort Obj < Mset-ObjMsg . 
+subsort Msg < Mset-ObjMsg . 
+
+
+op empty : -> Mset-ObjMsg [ctor] . 
+op __ : Obj Mset-ObjMsg -> Mset-ObjMsg [ctor assoc comm] . 
+op __ : Msg Mset-ObjMsg -> Mset-ObjMsg [ctor assoc comm] . 
+
+
+
+
+endfm

@@ -1,0 +1,35 @@
+*** Read the file with your modules:
+in exe-28.maude
+
+*** RUNTEST EXERCISE 28 
+
+red h' e' prefixOf h' e' l' l' o' .    *** true
+
+red 'h' 'a' prefixOf 'h' 'e' 'l' 'l' 'o' .    *** false
+
+red 'h' 'e' 'l' 'l' 'o' prefixOf 'h' 'i' .    *** false
+
+red 'h' '?' prefixOf 'h' 'e' 'l' 'l' 'o' .    *** true
+
+red 'h' '?' prefixOf 'h' 'i' .                *** true
+
+red '?' 'a' prefixOf 'h' 'e' 'y' .            *** false
+
+red '?' '?' '?' prefixOf 'h' 'i' .            *** false 
+
+red 'h' 'e' substringOf 'h' 'e' 'l' 'l' 'o' . *** true
+
+red 'l' 'l' substringOf 'e' 'l' 'l' .         *** true 
+
+red 'l' 'a' substringOf 'h' 'e' 'l' 'l' 'o' . *** false 
+
+red 'h' 'e' 'y' substringOf 'h' 'i' .         *** false
+
+red 'h' '?' 'l' substringOf 'h' 'e' 'l' 'l' . *** true 
+
+red '?' 'y' substringOf 'h' 'e' 'y' .         *** true 
+
+red 'i' '?' '?' substringOf 'h' 'i' .         *** true 
+
+
+

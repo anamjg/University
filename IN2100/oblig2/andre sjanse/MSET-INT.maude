@@ -1,0 +1,56 @@
+fmod MSET-INT is
+  protecting INT .
+
+  sorts Mset NeMset .                   *** Multisets and non-empty multisets
+  subsorts Int < NeMset < Mset .        *** A number is also a multiset
+  
+  op none : -> Mset [ctor] .            *** Empty multiset
+  op __ : Mset Mset -> Mset [ctor assoc comm id: none] .
+  op __ : NeMset NeMset -> NeMset [ctor assoc comm id: none] .
+
+  op size : Mset -> Nat .               *** No of elements in a multiset
+  op mult : Int Mset -> Nat .           *** Multiplicity of an element
+  op delete : Int Mset -> Mset .        *** Remove ONE occurrence of element
+  op _in_ : Int Mset -> Bool .          *** Is element in multiset?
+  op max : NeMset -> Int .              *** Largest element
+  op empty? : Mset -> Bool .            *** Empty?
+  op _>mul_ : Mset Mset -> Bool .       *** Multiset comparison
+
+  vars I J : Int .
+  vars MS MS' : Mset .  vars NEMS NEMS' : NeMset .
+
+  eq delete(I, I MS) = MS .
+  ceq delete(I, MS) = MS if not I in MS .
+  eq I in MS = mult(I, MS) > 0 .
+
+*** Equations for SIZE operator 
+eq size(none) = 0 .
+eq size(MS I) = s(size(MS)) .  
+
+
+*** Equations for MULT operator 
+eq mult(I, none) = 0 .
+ceq mult(I, MS J) = 1 + (mult(I, MS)) if J == I .
+eq mult(I, J MS) = mult(I, MS) .
+
+*** Equations for MAX operator 
+eq max(I) = I .
+ceq max(I NEMS) = I if I >= max(NEMS) . 
+ceq max(I NEMS) = max(NEMS) if I < max(NEMS) .
+
+
+*** Equations for EMPTY? operator
+eq empty?(none) = true . 
+eq empty?(MS) = false .
+
+
+*** Equations for >MUL operator 
+eq none >mul MS = false . 
+eq MS >mul none = true .
+ceq MS >mul MS' = true if max(MS) > max(MS') .
+ceq MS >mul MS' = false if max(MS) < max(MS') . 
+ceq MS >mul MS' = (delete(max(MS), MS)) >mul (delete(max(MS'), MS')) if max(MS) == max(MS') .
+
+
+
+endfm

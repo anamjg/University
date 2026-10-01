@@ -1,0 +1,230 @@
+fmod OBLIG2 is
+protecting LIST-INT . 
+protecting MSET-INT .
+
+*** EXERCISE 26 
+op empty? : List -> Bool . 
+op rest : NeList -> List .
+op reverse : List -> List . 
+op max : NeList -> Int .
+op isSorted : List -> Bool . 
+
+
+vars I J : Int . 
+var L : List . 
+var NEL : NeList . 
+
+
+*** Equations for EMPTY? operator 
+eq empty?(nil) = true . 
+eq empty?(L) = false .
+
+
+*** Equations for REST operator 
+eq rest(nil I) = nil . 
+eq rest (I NEL) = NEL . 
+
+
+*** Equations for REVERSE operator 
+eq reverse(nil) = nil . 
+eq reverse(nil I) = nil I . 
+eq reverse(L I) = I reverse(L) . 
+
+
+*** Equations for MAX operator 
+eq max(nil I) = I .
+eq max(NEL I) = max(max(NEL), I) . 
+
+*** Equations for ISSORTED operator 
+eq isSorted(nil) = true .
+eq isSorted(nil I) = true .
+eq isSorted(L I J) = (I < J) and isSorted(L I) .
+
+
+
+
+*** EXERCISE 27 
+op comesBeforeIn : Int Int List -> Bool . 
+op _>lex_ : List List -> Bool . 
+
+vars I J K : Int . 
+vars L L1 L2 : List . 
+
+
+*** Equations for COMES BEFORE IN operator 
+eq comesBeforeIn(I, J, nil) = false .
+eq comesBeforeIn(I, J, J L) = false . 
+ceq comesBeforeIn(I, J, I L) = true  if J occursIn L .
+eq comesBeforeIn(I, J, K L) = comesBeforeIn(I, J, L) .
+
+*** Equations for >LEX operator 
+eq L1 >lex nil = true .
+eq nil >lex L2 = false . 
+ceq I L1 >lex J L2 = true if I > J .
+ceq I L1 >lex J L2 = false if I < J .
+ceq I L1 >lex J L2 = (L1 >lex L2) if (I == J) . 
+ 
+
+
+
+*** EXERCISE 28 
+sorts Char Streng Pattern .
+
+subsorts Char < Streng < Pattern . 
+
+*** Constructors
+op empty : -> Streng [ctor] .
+op __ : Streng Streng -> Streng [ctor] . 
+op _ : Char -> Streng [ctor] .
+
+
+*** Operators for working with Streng 
+op length : Streng -> Nat .  *** Returns the length of a string 
+op reverse : Streng -> Streng . *** Reverses the string 
+op concat : Streng Streng -> Streng . *** Concatenates two strings . 
+
+
+vars C D : Char . 
+vars S S1 S2 : Streng . 
+
+*** Equations for LENGTH operator 
+eq length(empty) = 0 . 
+eq length(C S) = 1 + length(S) . 
+
+*** Equations for REVERSE operator 
+eq reverse(empty) = empty . 
+eq reverse(C S) = reverse(S) C . 
+
+
+*** Equations for CONCAT operator 
+eq concat(empty, S) = S .
+eq concat(empty, S) = S .
+eq concat(C S1, S2) = C concat(S1, S2) . 
+
+
+*** Operators exercises 
+op '?' : -> Pattern [ctor] . 
+op __ : Pattern Pattern -> Pattern [ctor] . 
+op isPal : Streng -> Bool . 
+op _prefixOf_ : Streng Streng -> Bool . 
+op _prefixOf_ : Pattern Streng -> Bool .
+op _substringOf_ : Streng Streng -> Bool .
+op _substringOf_ : Pattern Streng -> Bool .
+
+var P : Pattern . 
+
+*** Equations for ISPAL operator 
+eq isPal(empty) = true . 
+ceq isPal(C S) = true if (C S) == (reverse(C S)) . 
+
+
+*** Equations for PREFIX OF operator 
+eq empty prefixOf S = true . 
+eq C S prefixOf empty = false . 
+eq C S1 prefixOf D S2 = false .
+eq C S1 prefixOf C S2 = S1 prefixOf S2 . 
+
+eq P prefixOf empty = false .
+eq C P prefixOf D S = false . 
+eq C P prefixOf C S = P prefixOf S . 
+eq '?' P prefixOf C S = P prefixOf S . 
+
+
+
+*** Equations for SUBSTRING OF operator
+eq empty substringOf S = true .
+eq S substringOf empty = false . 
+eq P substringOf empty = false .
+ceq S1 substringOf S2 = true if S1 prefixOf S2 . 
+ceq P substringOf S = true if P prefixOf S . 
+eq S1 substringOf C S2 = S1 substringOf S2 . 
+eq P substringOf C S = P substringOf S . 
+
+
+
+
+
+*** EXERCISE 30 
+op size : Mset -> Nat . 
+op mult : Int Mset -> Nat . 
+op max : NeMset -> Int . 
+op empty? : Mset -> Bool .
+op _>mul_ : Mset Mset -> Bool . 
+
+vars I J : Int . 
+vars MS MS' : Mset . 
+vars NEMS NEMS' : NeMset .
+
+*** Equations for SIZE operator 
+eq size(none) = 0 .
+eq size(MS I) = s(size(MS)) .  
+
+
+*** Equations for MULT operator 
+eq mult(I, none) = 0 .
+ceq mult(I, MS J) = s(mult(I, MS)) if J == I .
+
+
+*** Equations for MAX operator 
+eq max(I) = I .
+eq max(I NEMS) = if I > max(NEMS) then I else max(NEMS) fi .
+
+
+*** Equations for EMPTY? operator
+eq empty?(none) = true . 
+eq empty?(MS) = false .
+
+
+*** Equations for >MUL operator 
+eq none >mul MS = false . 
+eq MS >mul none = true .
+ceq MS >mul MS' = true if max(MS) > max(MS') .
+ceq MS >mul MS' = false if max(MS) < max(MS') . 
+ceq MS >mul MS' = delete(max(MS), MS) >mul delete(max(MS'), MS') if max(MS) == max(MS') .
+
+
+
+
+
+*** EXERCISE 32 
+
+sorts Obj Msg . 
+
+sort Mset-ObjMsg . 
+
+subsort Obj < Mset-ObjMsg . 
+subsort Msg < Mset-ObjMsg . 
+
+
+op empty : -> Mset-ObjMsg [ctor] . 
+op __ : Obj Mset-ObjMsg [ctor assoc comm] . 
+op __ : Msg Mset-ObjMsg [ctor assoc comm] . 
+
+
+
+
+
+
+
+*** EXERCISE 37 
+op insertSort : List -> List . 
+op insert : Int List -> List . 
+
+
+var L : List . 
+vars M N : Int . 
+
+eq insertSort(nil) = nil . 
+eq insertSort(M) = M . 
+eq insertSort(M L) = insert(M, insertSort(L)) .
+
+eq insert(M, nil) = M .
+ceq insert(M, N L) = M N L if M <= N . 
+eq insert(M, N L) = N insert(M, L) [owise] .
+
+
+
+
+*** REST OF EXERCISES ON PDF
+
+endfm

@@ -1,0 +1,20 @@
+fmod EXE-37 is 
+*** EXERCISE 37 
+op insertSort : List -> List . 
+op insert : Int List -> List . 
+
+
+var L : List . 
+vars M N : Int . 
+
+eq insertSort(nil) = nil . 
+eq insertSort(M) = M . 
+eq insertSort(M L) = insert(M, insertSort(L)) .
+
+eq insert(M, nil) = M .
+ceq insert(M, N L) = M N L if M <= N . 
+eq insert(M, N L) = N insert(M, L) [owise] .
+
+
+
+endfm
